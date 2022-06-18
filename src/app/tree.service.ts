@@ -15,4 +15,8 @@ export class TreeService {
   inputChange(id: string) {
     this.inputs.checkedChange(id);
   }
+
+  toggleCollapse(id: string) {
+    this.inputs.toggleCollapse(id);
+  }
 }

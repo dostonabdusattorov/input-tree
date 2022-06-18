@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TreeService } from '../tree.service';
 
 @Component({
@@ -8,8 +8,6 @@ import { TreeService } from '../tree.service';
 })
 export class InputComponent implements OnInit {
   @Input() input: any;
-
-  @Output() onAddInput: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(public ts: TreeService) {}
 
@@ -23,5 +21,9 @@ export class InputComponent implements OnInit {
 
   handleInputChange(id: string) {
     this.ts.inputChange(id);
+  }
+
+  handleToggleCollapse(id: string) {
+    this.ts.toggleCollapse(id);
   }
 }

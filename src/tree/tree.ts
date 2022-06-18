@@ -4,6 +4,7 @@ export class TreeNode {
   descendants: TreeNode[];
   length: number;
   isChecked: boolean;
+  isCollapsed: boolean;
 
   constructor(value: string, parentState: boolean) {
     this.id = Math.random().toString();
@@ -11,6 +12,7 @@ export class TreeNode {
     this.descendants = [];
     this.length = 0;
     this.isChecked = parentState;
+    this.isCollapsed = false;
   }
 
   get checkedCount() {
@@ -77,6 +79,16 @@ class Tree {
 
     currentNode.descendants.forEach((el) => {
       this.checkedChange(id, currentNode, el);
+    });
+  }
+
+  toggleCollapse(id: string, currentNode: TreeNode = this.root) {
+    if (currentNode.id === id) {
+      currentNode.isCollapsed = !currentNode.isCollapsed;
+    }
+
+    currentNode.descendants.forEach((el) => {
+      this.toggleCollapse(id, el);
     });
   }
 

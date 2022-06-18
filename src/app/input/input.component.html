@@ -4,11 +4,16 @@
   (change)="handleInputChange(input.id)"
 />
 <button (click)="addChildInput(input?.id, input.isChecked)">Add input</button>
+<button (click)="handleToggleCollapse(input?.id)" *ngIf="input.length > 0">
+  {{ input.isCollapsed ? "Expand" : "Collapse" }}
+</button>
 <span>{{ input?.value }}</span>
-<ng-container *ngIf="input.length > 0">
-  <ul>
-    <li *ngFor="let input of input.descendants">
-      <app-input [input]="input"></app-input>
-    </li>
-  </ul>
+<ng-container *ngIf="!input.isCollapsed">
+  <ng-container *ngIf="input.length > 0">
+    <ul>
+      <li *ngFor="let input of input.descendants">
+        <app-input [input]="input"></app-input>
+      </li>
+    </ul>
+  </ng-container>
 </ng-container>

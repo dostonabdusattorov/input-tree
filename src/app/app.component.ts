@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import Tree from '../tree/tree';
 import { TreeService } from './tree.service';
 
 @Component({
